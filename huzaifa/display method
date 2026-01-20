@@ -1,0 +1,21 @@
+void displayStudents() {
+    if (isEmpty()) {
+        System.out.println("No students enrolled to be displayed!");
+        return;
+    }
+
+    System.out.println("---------------------------------------------");
+    System.out.println("Year\tName\t\tID\t\tAge");
+    System.out.println("---------------------------------------------");
+
+    for (int i = 0; i < count; i++) {
+        System.out.println(
+                studentArr[i].enYear + "\t" +
+                studentArr[i].name + "\t\t" +
+                studentArr[i].ID + "\t\t" +
+                studentArr[i].age
+        );
+    }
+
+    System.out.println("---------------------------------------------");
+}
