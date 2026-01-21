@@ -60,20 +60,18 @@ public class StudentManagementSystem {
         }
     }
 
-    // ADD STUDENT
     public void addStudent() {
         System.out.println("\n--- Add New Student ---");
 
         System.out.print("Enter Student ID: ");
         int id = getIntInput();
 
-        // Check if ID already exists
         if (findStudentById(id) != null) {
             System.out.println("ERROR: Student with ID " + id + " already exists!");
             return;
         }
 
-        scanner.nextLine(); // Clear buffer
+        scanner.nextLine(); 
 
         System.out.print("Enter Student Name: ");
         String name = scanner.nextLine();
@@ -97,7 +95,6 @@ public class StudentManagementSystem {
         System.out.println("✓ Student added successfully!");
     }
 
-    // UPDATE STUDENT
     public void updateStudent() {
         System.out.println("\n--- Update Student ---");
 
@@ -113,7 +110,7 @@ public class StudentManagementSystem {
 
         System.out.println("Current Details: " + student);
 
-        scanner.nextLine(); // Clear buffer
+        scanner.nextLine(); 
 
         System.out.print("Enter new Name (or press Enter to skip): ");
         String newName = scanner.nextLine();
@@ -135,7 +132,6 @@ public class StudentManagementSystem {
         System.out.println("Updated Details: " + student);
     }
 
-    // DELETE STUDENT
     public void deleteStudent() {
         System.out.println("\n--- Delete Student ---");
 
@@ -151,7 +147,7 @@ public class StudentManagementSystem {
 
         System.out.println("Student to Delete: " + student);
         System.out.print("Are you sure? (yes/no): ");
-        scanner.nextLine(); // Clear buffer
+        scanner.nextLine(); 
         String confirmation = scanner.nextLine();
 
         if (confirmation.equalsIgnoreCase("yes")) {
@@ -162,7 +158,6 @@ public class StudentManagementSystem {
         }
     }
 
-    // SEARCH BY ID
     public void searchById() {
         System.out.println("\n--- Search Student by ID ---");
 
@@ -180,11 +175,10 @@ public class StudentManagementSystem {
         }
     }
 
-    // SEARCH BY NAME
     public void searchByName() {
         System.out.println("\n--- Search Student by Name ---");
 
-        scanner.nextLine(); // Clear buffer
+        scanner.nextLine(); 
         System.out.print("Enter Student Name (or part of name): ");
         String searchName = scanner.nextLine();
 
@@ -208,7 +202,6 @@ public class StudentManagementSystem {
         }
     }
 
-    // DISPLAY ALL STUDENTS
     public void displayAllStudents() {
         System.out.println("\n--- All Students ---");
 
@@ -224,7 +217,6 @@ public class StudentManagementSystem {
         displayTableFooter();
     }
 
-    // HELPER METHODS
     private Student findStudentById(int id) {
         for (Student student : students) {
             if (student.getId() == id) {
@@ -250,13 +242,12 @@ public class StudentManagementSystem {
             value = scanner.nextInt();
         } catch (Exception e) {
             System.out.println("ERROR: Please enter a valid number!");
-            scanner.nextLine(); // Clear invalid input
+            scanner.nextLine(); 
             return -1;
         }
         return value;
     }
 
-    // SORTING METHOD - Insertion Sort based on Student ID
     private void sortStudents() {
         for (int i = 1; i < students.size(); i++) {
             Student currentStudent = students.get(i);
@@ -271,7 +262,6 @@ public class StudentManagementSystem {
         }
     }
 
-    // MAIN METHOD
     public static void main(String[] args) {
         StudentManagementSystem sms = new StudentManagementSystem();
         sms.displayMainMenu();

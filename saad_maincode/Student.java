@@ -9,7 +9,6 @@ public class Student {
         this.marks = marks;
     }
 
-    // Getters
     public int getId() {
         return id;
     }
@@ -22,7 +21,6 @@ public class Student {
         return marks;
     }
 
-    // Setters
     public void setId(int id) {
         this.id = id;
     }
