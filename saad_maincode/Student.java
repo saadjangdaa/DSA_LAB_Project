@@ -1,15 +1,15 @@
 public class Student {
-    private int id;
+    private String id;
     private String name;
     private int marks;
 
-    public Student(int id, String name, int marks) {
+    public Student(String id, String name, int marks) {
         this.id = id;
         this.name = name;
         this.marks = marks;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -21,7 +21,7 @@ public class Student {
         return marks;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -35,7 +35,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return String.format("| %-5d | %-20s | %-5d |", id, name, marks);
+        return String.format("| %-5s | %-20s | %-5d |", id, name, marks);
     }
 
     public String getTableRow() {

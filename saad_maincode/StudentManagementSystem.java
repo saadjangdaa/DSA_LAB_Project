@@ -63,15 +63,14 @@ public class StudentManagementSystem {
     public void addStudent() {
         System.out.println("\n--- Add New Student ---");
 
+        scanner.nextLine();
         System.out.print("Enter Student ID: ");
-        int id = getIntInput();
+        String id = scanner.nextLine();
 
         if (findStudentById(id) != null) {
             System.out.println("ERROR: Student with ID " + id + " already exists!");
             return;
-        }
-
-        scanner.nextLine(); 
+        } 
 
         System.out.print("Enter Student Name: ");
         String name = scanner.nextLine();
@@ -98,8 +97,9 @@ public class StudentManagementSystem {
     public void updateStudent() {
         System.out.println("\n--- Update Student ---");
 
+        scanner.nextLine();
         System.out.print("Enter Student ID to Update: ");
-        int id = getIntInput();
+        String id = scanner.nextLine();
 
         Student student = findStudentById(id);
 
@@ -135,8 +135,9 @@ public class StudentManagementSystem {
     public void deleteStudent() {
         System.out.println("\n--- Delete Student ---");
 
+        scanner.nextLine();
         System.out.print("Enter Student ID to Delete: ");
-        int id = getIntInput();
+        String id = scanner.nextLine();
 
         Student student = findStudentById(id);
 
@@ -161,8 +162,9 @@ public class StudentManagementSystem {
     public void searchById() {
         System.out.println("\n--- Search Student by ID ---");
 
+        scanner.nextLine();
         System.out.print("Enter Student ID: ");
-        int id = getIntInput();
+        String id = scanner.nextLine();
 
         Student student = findStudentById(id);
 
@@ -217,9 +219,9 @@ public class StudentManagementSystem {
         displayTableFooter();
     }
 
-    private Student findStudentById(int id) {
+    private Student findStudentById(String id) {
         for (Student student : students) {
-            if (student.getId() == id) {
+            if (student.getId().equals(id)) {
                 return student;
             }
         }
@@ -250,15 +252,21 @@ public class StudentManagementSystem {
 
     private void sortStudents() {
         for (int i = 1; i < students.size(); i++) {
-            Student currentStudent = students.get(i);
-            int currentId = currentStudent.getId();
+            Student secondStudent = students.get(i);
+            String secondStudentId = secondStudent.getId();
+            int secondId = Integer.parseInt(secondStudentId.substring(secondStudentId.length() - 2));
 
-            int j = i - 1;
-            while (j >= 0 && students.get(j).getId() > currentId) {
-                students.set(j + 1, students.get(j));
-                j--;
+            for (int j = i - 1; j >= 0; j--) {
+                String firstStudentId = students.get(j).getId();
+                int firstId = Integer.parseInt(firstStudentId.substring(firstStudentId.length() - 2));
+
+                if (firstId > secondId) {
+                    students.set(j + 1, students.get(j));
+                    students.set(j, secondStudent);
+                } else {
+                    break;
+                }
             }
-            students.set(j + 1, currentStudent);
         }
     }
 
