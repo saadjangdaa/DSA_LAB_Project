@@ -22,7 +22,7 @@ public class StudentManagementSystem {
             System.out.println("4. Search Student (by ID)");
             System.out.println("5. Search Student (by Name)");
             System.out.println("6. Display All Students");
-            System.out.println("7. Exit");
+            System.out.println("8. Exit");
             System.out.println("========================================");
             System.out.print("Enter your choice: ");
 
@@ -48,6 +48,10 @@ public class StudentManagementSystem {
                     displayAllStudents();
                     break;
                 case 7:
+                    sortStudents();
+                    System.out.println("✓ Students sorted by ID successfully!");
+                    break;
+                case 8:
                     System.out.println("\nThank you for using SMS. Goodbye!");
                     return;
                 default:
@@ -89,6 +93,7 @@ public class StudentManagementSystem {
 
         Student student = new Student(id, name, marks);
         students.add(student);
+        sortStudents();
         System.out.println("✓ Student added successfully!");
     }
 
@@ -249,6 +254,21 @@ public class StudentManagementSystem {
             return -1;
         }
         return value;
+    }
+
+    // SORTING METHOD - Insertion Sort based on Student ID
+    private void sortStudents() {
+        for (int i = 1; i < students.size(); i++) {
+            Student currentStudent = students.get(i);
+            int currentId = currentStudent.getId();
+
+            int j = i - 1;
+            while (j >= 0 && students.get(j).getId() > currentId) {
+                students.set(j + 1, students.get(j));
+                j--;
+            }
+            students.set(j + 1, currentStudent);
+        }
     }
 
     // MAIN METHOD
